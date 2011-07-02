@@ -6,6 +6,7 @@ my school. I have removed all branding references and kept it as generic as
 possible. This site is inspired from `Django People`_
 
 The site is powered by:
+
 * Python_
 * Django_
 * CouchDB_
