@@ -1,0 +1,30 @@
+{% extends "site_base.html" %}
+
+{% block js %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/cupertino/jquery-ui.css" type="text/css" />    
+<script type="text/javascript" src="{{ MEDIA_URL }}js/countryMapping.js"></script>
+<script type="text/javascript">
+      $(document).ready(function () { 
+        var tabs = $("#search").tabs();
+        $($("#search a")[0]).click();
+      });
+</script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/search.js"></script>
+{% endblock %}
+
+{% block content %}
+<h3>Search by</h3>
+<div id="search">
+  <ul>
+    <li><a class="largeText" href="#batch" onclick="setupBatchSearch();">Batch</a></li>
+    <!-- <li><a class="largeText" href="#course" onclick="setupCourseSearch();">Course</a></li> -->
+    <!-- <li><a class="largeText" href="#class" onclick="setupClassSearch();">Class</a></li> -->
+    <li><a class="largeText" href="#country" onclick="setupCountrySearch();">Country</a></li>
+  </ul>
+    <div id="batch"></div>
+    <!-- <div id="course"></div> -->
+    <div id="class"></div>
+    <div id="country"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "site_base.html" %}
+
+{% load switchcase %}
+
+{% block js %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/countryMapping.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/map_init.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/do_list.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    doList("{{ MEDIA_URL }}", "{{ searchkey }}");
+  });
+</script>
+{% endblock %}
+
+{% block map %}
+<div class="mapBox" id="map_canvas"></div>
+<p style="float: right;">
+  {% if user_data.has_previous %}
+    <a href="?page={{ user_data.previous_page_number }}">Previous</a>
+  {% endif %}
+  Viewing page {{ user_data.number }} of {{ user_data.paginator.num_pages }}
+  {% if user_data.has_next %}
+    <a href="?page={{ user_data.next_page_number }}">Next</a>
+  {% endif %}
+</p>
+{% endblock %}
+
+{% block content %}
+<h4>Viewing {{ searchkey }}:<span class="country">{{ searchval }}</span> list</h4>
+<p>
+  Filter in current page by
+  <select id="selectFilter">
+  </select>
+  <input type="text" id="filterInput" />
+  <input type="submit" value="Filter" onclick="filter();" />
+</p>
+<div id="main">
+  {% for row in user_data.object_list %} 
+  <span class="neat">
+    {% for key,val in row.items %}
+      {% switch key %}
+        {% case "user_id" %}
+          <a class="user_id" href="/user/{{ val }}/">{{ val }}</a>{% ifequal val request.user.username %}(You){% endifequal %}
+        {% endcase %}
+	{% case "country" %}
+	  <a class="country" href="/country/{{ val }}/">
+	    <img src="{{ MEDIA_URL }}images/flags/{{ val|lower }}.gif" />
+	  </a>
+	{% endcase %}
+        {% case "full_name" %}
+	  <br />
+          <span class="full_name">{{ val }}</span><br />
+	{% endcase %}
+        {% case "course" %}
+          <a class="course" href="/course/{{ val }}/">{{ val }}</a><br />
+	{% endcase %}
+        {% case "batch" %}
+          <a class="batch" href="/batch/{{ val }}/">{{ val }}</a><br />
+	{% endcase %}
+        {% case "location_description" %}
+          <span class="location">{{ val }}</span><br />
+	{% endcase %}
+        {% case "latitude" %}
+          <span class="latitude">{{ val }}</span>
+	{% endcase %}
+        {% case "longitude" %}
+          <span class="longitude">{{ val }}</span>
+	{% endcase %}
+      {% endswitch %}
+    {% endfor %}
+  </span>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %}
+<p style="float: right;">
+  {% if user_data.has_previous %}
+    <a href="?page={{ user_data.previous_page_number }}">Previous</a>
+  {% endif %}
+  Viewing page {{ user_data.number }} of {{ user_data.paginator.num_pages }}
+  {% if user_data.has_next %}
+    <a href="?page={{ user_data.next_page_number }}">Next</a>
+  {% endif %}
+  {{ block.super }}
+</p>
+{% endblock %}

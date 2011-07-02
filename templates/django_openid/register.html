@@ -1,0 +1,73 @@
+{% extends base_template %}
+
+{% block title %}Register an account{% endblock %}
+
+{% block extra_head %}
+<style type="text/css">
+input.openid {
+  background: url({{ logo }}) no-repeat; 
+  background-position: 0 50%;
+  padding-left: 16px;
+  width: 20em;
+}
+.errors input {
+    background-color: pink;
+}
+</style>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/openid_selector.js" ></script>
+{% endblock %}
+
+{% block content %}
+<h2>Register an account</h2>
+
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+
+{% if openid %}
+<p>Your OpenID <strong>{{ openid }}</strong> will be associated with this account. (<a href="../logout/?next={{ no_thanks }}">no thanks</a>). In the future, you can just use this OpenID to login. The username, first name and last name are to personalize the service. Please enter a valid email id as a confirmation mail is sent!</p>
+<form action="{{ action }}" method="post">{% csrf_token %}
+{% with form.username as field %}{% include "django_openid/_register_form_field.html" %}{% endwith %}
+{% with form.first_name as field %}{% include "django_openid/_register_form_field.html" %}{% endwith %}
+{% with form.last_name as field %}{% include "django_openid/_register_form_field.html" %}{% endwith %}
+{% with form.email as field %}{% include "django_openid/_register_form_field.html" %}{% endwith %}
+<p><input type="submit" value="Register"></p>    
+{% else %}
+<h3>By entering your OpenID (<a target="new" href="http://openid.net/">What is an Openid?</a>)</h3>
+<h4>Click on any provider you wish to login with. No need to fill yet another registration form!</h4>
+<form action="{{ action }}" method="post">{% csrf_token %}
+<table>
+  <tr>
+    <td>
+      <a href="#" onclick="fillEndPoint('google');"><img src="{{ MEDIA_URL }}images/openid_providers/google.png" /></a>
+      <a href="#" onclick="fillEndPoint('yahoo');"><img src="{{ MEDIA_URL }}images/openid_providers/yahoo.png" /></a>
+      <a href="#" onclick="fillEndPoint('blogger');"><img src="{{ MEDIA_URL }}images/openid_providers/blogger.png" /></a>
+      <a href="#" onclick="fillEndPoint('flickr');"><img src="{{ MEDIA_URL }}images/openid_providers/flickr.png" /></a>
+      <a href="#" onclick="fillEndPoint('wordpress');"><img src="{{ MEDIA_URL }}images/openid_providers/wordpress.png" /></a>
+      <a href="#" onclick="fillEndPoint('myspace');"><img src="{{ MEDIA_URL }}images/openid_providers/myspace.png" /></a>
+      <a href="#" onclick="fillEndPoint('lj');"><img src="{{ MEDIA_URL }}images/openid_providers/livejournal.png" /></a>
+      <a href="#" onclick="fillEndPoint('aol');"><img src="{{ MEDIA_URL }}images/openid_providers/aol.png" /></a>
+      <a href="#" onclick="fillEndPoint('openid');"><img src="{{ MEDIA_URL }}images/openid_providers/openid.png" /></a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h4>Don't have any of these accounts? No problem! You can sign up for a free openid <a target="new" href="http://www.myopenid.com/">here</a> or check other <a href="http://openid.net/get-an-openid/">providers</a>.</h4>
+    </td>
+  </tr>
+  <tr>
+    {% if next %}
+    <td><input type="hidden" name="next" value="{{ next }}"></td>
+    {% endif %}
+    <td>
+      <h4 id="infoMsg" style="color: red;"></h4>
+      <input class="openid" id="openid_url" type="text" name="openid_url">
+      <input type="submit" value="Register using an OpenID">
+    </td>
+  </tr>
+</table>
+</form>
+{% endif %}
+</form> 
+
+{% endblock %}

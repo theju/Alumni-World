@@ -1,0 +1,5 @@
+django
+python-openid
+git+git://github.com/simonw/django-openid.git#egg=django_openid
+couchdbkit
+git+git://github.com/theju/django-couchdb-utils#egg=django_couchdb_utils

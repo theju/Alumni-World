@@ -1,0 +1,31 @@
+{% extends "site_base.html" %}
+
+{% load get_services %}
+
+{% block js %}
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/map_init.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    initialize();
+  });
+</script>
+{% endblock %}
+
+{% block map %}
+<h4>Viewing profile of <span id="fullName">{{ user_data.full_name }}</span></h4>
+<a href="/country/{{ user_data.country }}/"><img class="flag" src="{{ MEDIA_URL }}images/flags/{{ user_data.country|lower }}.gif" /></a>
+<div id="map_canvas" class="mapBox"></div>
+{% endblock %}
+
+{% block content %}
+{% if user_data.photo %}<a href="{{ MEDIA_URL }}{{ user_data.photo }}"><img src="{{ MEDIA_URL }}{{ user_data.photo }}" width="150" /></a>{% endif %}
+<table id="profile">
+  <input id="id_latitude"  type="hidden" value="{{ user_data.latitude }}" />
+  <input id="id_longitude" type="hidden" value="{{ user_data.longitude }}" />
+  <input id="id_location"  type="hidden" value="{{ user_data.location }}" />
+  {% for key,val in user_data.items %}
+    <tr><th>{{ key|labelize|title }}</th><td>{% get_service_img key %}{{ val|urlize }}</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

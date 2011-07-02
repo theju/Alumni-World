@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load i18n %}
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{% trans "Alumni Portal" %}: {% block title %}{% trans "Find alumni near you" %}!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]>
+	<link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/site.css" type="text/css" media="all">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <div class="container">
+    <div class="span-24 last">
+      <ul class="nav">
+	{% if not user.is_authenticated %}
+	<!-- not logged in -->
+	<li><a href="/login/" class="login">{% trans "Log in" %}</a></li>
+	<li><a href="/register/">{% trans "Register" %}</a></li>
+	{% else %}
+	<!-- logged in -->
+	<li><a href="/search/">{% trans "Search" %}</a></li>
+	<li>{% trans "Logged in as" %} <a href="/user/{{ request.user.username }}/">{{ request.user }}</a> (<a href="/profile/">Profile</a>) </li>
+	<li><a href="/logout/">{% trans "Log out" %}</a></li>
+	{% endif %}
+      </ul>
+    </div>
+    <div class="span-24" id="header">
+      <h2>{% trans "Alumni Portal" %}</h2>
+    </div>
+    <div class="span-24">
+      {% block map %}{% endblock %}
+      {% block content %}{% endblock %}
+    </div>
+    <div class="span-24" id="footer">
+      {% block footer %}
+      <!-- <ul class="footer"> -->
+      <!-- 	<li><a href="/about/">About</a></li> -->
+      <!-- 	<li><a href="/blog/">Blog</a></li> -->
+      <!-- 	<li><a href="/contact/">Contact</a></li> -->
+      <!-- </ul> -->
+      {% endblock %}
+    </div>
+  </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+{% block js %}
+{% endblock %}
+</body>
+</html>

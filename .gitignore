@@ -1,0 +1,6 @@
+*~
+*.pyc
+local_settings.py*
+site_media/thumbnails/*
+site_media/profile_pics/*
+tmp.db*

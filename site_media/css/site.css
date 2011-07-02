@@ -1,0 +1,155 @@
+body {
+    background-image: url('../images/sprite1.png');
+    background-repeat: repeat-x;
+    margin: 1em;
+    font:13.5px helvetica,arial,freesans,clean,sans-serif;
+    text-align:center;
+}
+
+h2, h3 {
+    border-bottom: 1px solid #666;
+    padding-bottom: 0.2em;
+}
+
+div#header {
+    margin-bottom: 2em;
+}
+
+ul.errorlist {
+    margin: 0;
+    padding: 0.2em 0.4em;
+    background-color: red;
+    color: white;
+    list-style-type: none;
+    height: 20px;
+}
+
+li {
+    list-style-type: none;
+    float: left;
+    margin-left: 3em;
+}
+
+table {
+    margin: 0em 7.5em 0em 7.5em;
+}
+
+select,input[type=text],input[type=password],input[type=image],textarea{
+    width: 25em;
+    font:99% helvetica,arial,freesans,sans-serif;
+}
+
+select,option{
+    padding:0 .25em;
+}
+
+input.text{
+    padding:1px 0;
+}
+
+a{
+    color:#4183c4;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+.largeText {
+    font-size: large;
+}
+
+.flag {
+    margin: 2px 0 0 10px;
+}
+
+.serviceProv {
+    margin-right: 5px;
+}
+
+div#main span.neat {
+    background-image: url('../images/sprite1.png');
+    background-repeat: repeat-x;
+    float: left; 
+    text-align: left; 
+    padding: 1em 2em 1em 2em;
+    margin: 0em 2em 2em 0em;
+    border: 5px solid #a4f4e2;
+    min-width: 225px;
+    max-width: 225px;
+    min-height: 165px;
+    max-height: 165px;
+}
+
+div.mapBox {
+    width: 950px;
+    height: 400px;
+    margin-bottom: 2em;
+}
+
+div.mapBoxIndex {
+    width: 720px;
+    height: 300px;
+    margin-bottom: 2em;
+}
+
+ul.footer {
+    margin-top: 5em;
+    outline: 1px solid #666;
+}
+
+ul.nav {
+    float: right;
+}
+
+ul.nav a{
+    font-size: small;
+}
+
+span.neat span.latitude {
+    display: none;
+}
+
+span.neat span.longitude {
+    display: none;
+}
+
+p { 
+    margin: 0.5em 0em;
+}
+
+p.help_text {
+    margin: 0em;
+    font-size: small;
+    color: gray;
+}
+
+#stat {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
+#stat div {
+    display: block;
+    clear: both;
+}
+
+#stat div img {
+    float: left;
+    margin-top: 8px;
+    margin-right: 2px;
+}
+
+#stat div p {
+    float: left;
+}
+
+#id_bio {
+    height: 10em;
+}
+
+#id_communication_address {
+    height: 5em;
+}
