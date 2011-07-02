@@ -62,7 +62,7 @@ MIDDLEWARE_CLASSES = (
     'django_couchdb_utils.openid_consumer.registration.RegistrationConsumer',
 )
 
-ROOT_URLCONF = '%s.urls' % os.path.dirname(__file__)
+ROOT_URLCONF = '%s.urls' % os.path.basename(os.path.dirname(__file__))
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates')
