@@ -3,7 +3,7 @@ function clearInput(obj) {
 }
 
 function redirectToBatch() {
-    window.location = "/batch/"+$("#batchInput").val()+"/";
+    window.location = "/batch/"+$("#batchSelect").val()+"/";
 }
 
 function redirectToCourse() {
@@ -19,8 +19,12 @@ function redirectToClass() {
 }
 
 function setupBatchSearch() {
-    var batchInput = "<p><input type='text' id='batchInput' onclick='clearInput(this);' value='Enter the year' /></p>"+
-	             "<p><input type='submit' value='Search' onclick='redirectToBatch();' /></p>";
+    var batchInput = "<p><select id='batchSelect'>";
+    for (var i = startBatch; i <= endBatch; i++) {
+	batchInput += "<option value='"+i+"'>"+i+"</option>";
+    }
+    batchInput += "</select></p>";
+    batchInput += "<p><input type='submit' value='Search' onclick='redirectToBatch();' /></p>";
     $("#batch").children("p").remove();
     $("#batch").append(batchInput);
 }
