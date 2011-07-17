@@ -163,12 +163,13 @@ class WorldViews(object):
                     photo = urlparse.urljoin(settings.MEDIA_URL, "site_media/%s" %form.data['photo'])
                     ctx_dict.update({'photo': photo})
             else:
-                ctx_dict = {'form': PersonForm()}
+                ctx_dict = {'form': PersonForm(initial={"email": request.user.email})}
             return render(request, 'person/edit_profile.html', ctx_dict)
         user_data = request.POST.copy()
         # Stuff the user id and full name
         # The full name is stored now to prevent HTTP requests later
         user_data['user_id'] = request.user.id
+        user_data['email'] = request.user.email
         user = User.view('%s/users_by_username' % User._meta.app_label, 
                          key=request.user.username, include_docs=True).first()
         user_data['full_name'] = user.get_full_name()

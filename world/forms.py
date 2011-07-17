@@ -16,6 +16,8 @@ class PersonForm(forms.Form):
 
     user_id   = forms.CharField(widget=forms.HiddenInput, required=False)
     full_name = forms.CharField(widget=forms.HiddenInput, required=False)
+    email     = forms.EmailField(widget=forms.TextInput(attrs={"readonly": True, 
+                                                               "disabled": True}))
 
     batch  = forms.CharField(widget=forms.Select(choices=BATCH_CHOICES), help_text="Year passed out / Year expected to pass")
     Class  = forms.CharField(widget=forms.Select(choices=CLASS_CHOICES), help_text="Class passed out")
@@ -31,7 +33,6 @@ class PersonForm(forms.Form):
 
     # Contact details
     communication_address = forms.CharField(widget=forms.Textarea, required=False)
-    email    = forms.EmailField()
     phone = forms.CharField(max_length=10, required=False)
     blog_url = forms.URLField(label="Blog URL", required=False)
 
