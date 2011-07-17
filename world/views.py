@@ -113,7 +113,6 @@ class WorldViews(object):
             for key in row_json:
                 if key in cols_list:
                     short_dict.update({key: row_json[key]})
-            print short_dict
             if short_dict not in cleaned_data:
                 cleaned_data.append(short_dict)
         return cleaned_data
