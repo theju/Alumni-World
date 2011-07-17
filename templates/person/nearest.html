@@ -27,11 +27,11 @@
 {% endif %}
 
 {% if latitude %}
-  <p>Showing people near to you from latitude: {{ latitude }}</p>
+  <p>Showing people near to you from latitude: {{ latitude|stringformat:".4f" }}</p>
 {% endif %}
 
 {% if longitude %}
-  <p>Showing people near to you from longitude: {{ longitude }}</p>
+  <p>Showing people near to you from longitude: {{ longitude|stringformat:".4f" }}</p>
 {% endif %}
 </div>
 <div class="mapBox" id="map_canvas">&nbsp;</div>

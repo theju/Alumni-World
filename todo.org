@@ -1,6 +1,5 @@
 * Things left to be done
-** TODO Openid Register and Login (Logos must be clickable)
 ** TODO Add facebook login
 ** TODO Add twitter login
 ** TODO Remove all openids apart from google and yahoo (???)
-** TODO Reduce the number of decimal places in longitude/latitude from 10 to 4
+** TODO Openid Register and Login (Logos must be clickable)
